@@ -1,0 +1,33 @@
+.column {
+  background: rgb(224, 230, 231);
+  border-radius: 5px;
+  box-shadow: 0px 24px 37px 5px rgb(0 0 0 / 2%);
+  padding: 15px 5px 6px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .column__header {
+    h3 {
+      font-size: 16px;
+      color: rgb(100, 100, 100);
+      margin-left: 5px;
+
+      span {
+        font-size: 13px;
+        color: rgb(150, 150, 150);
+      }
+    }
+  }
+
+  .column__content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 50px;
+  }
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}

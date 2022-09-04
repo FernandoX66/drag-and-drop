@@ -1,0 +1,33 @@
+<div class="header">
+  <button>Create Task</button>
+</div>
+<div class="board">
+  <app-board-column
+    columnTitle="TO DO"
+    [tasks]="toDoTasks"
+    cdkDropList
+    #toDoList="cdkDropList"
+    [cdkDropListData]="toDoTasks"
+    [cdkDropListConnectedTo]="[inProgressList, doneList]"
+    (cdkDropListDropped)="handleDrop($event)"
+  ></app-board-column>
+
+  <app-board-column
+    columnTitle="IN PROGRESS"
+    [tasks]="inProgressTasks"
+    cdkDropList
+    #inProgressList="cdkDropList"
+    [cdkDropListData]="inProgressTasks"
+    [cdkDropListConnectedTo]="[toDoList, doneList]"
+    (cdkDropListDropped)="handleDrop($event)"
+  ></app-board-column>
+  <app-board-column
+    columnTitle="DONE"
+    [tasks]="doneTasks"
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="doneTasks"
+    [cdkDropListConnectedTo]="[inProgressList, toDoList]"
+    (cdkDropListDropped)="handleDrop($event)"
+  ></app-board-column>
+</div>
