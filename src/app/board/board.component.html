@@ -3,30 +3,34 @@
 </div>
 <div class="board">
   <app-board-column
+    id="todo"
     columnTitle="TO DO"
-    [tasks]="toDoTasks"
+    [tasks]="userTasks.todo"
     cdkDropList
     #toDoList="cdkDropList"
-    [cdkDropListData]="toDoTasks"
+    [cdkDropListData]="userTasks.todo"
     [cdkDropListConnectedTo]="[inProgressList, doneList]"
     (cdkDropListDropped)="handleDrop($event)"
+    id="todo"
   ></app-board-column>
 
   <app-board-column
+    id="inProgress"
     columnTitle="IN PROGRESS"
-    [tasks]="inProgressTasks"
+    [tasks]="userTasks.inProgress"
     cdkDropList
     #inProgressList="cdkDropList"
-    [cdkDropListData]="inProgressTasks"
+    [cdkDropListData]="userTasks.inProgress"
     [cdkDropListConnectedTo]="[toDoList, doneList]"
     (cdkDropListDropped)="handleDrop($event)"
   ></app-board-column>
   <app-board-column
+    id="done"
     columnTitle="DONE"
-    [tasks]="doneTasks"
+    [tasks]="userTasks.done"
     cdkDropList
     #doneList="cdkDropList"
-    [cdkDropListData]="doneTasks"
+    [cdkDropListData]="userTasks.done"
     [cdkDropListConnectedTo]="[inProgressList, toDoList]"
     (cdkDropListDropped)="handleDrop($event)"
   ></app-board-column>
