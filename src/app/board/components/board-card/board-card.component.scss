@@ -23,8 +23,3 @@
     cursor: move;
   }
 }
-
-.cdk-drag-preview {
-  @include card;
-  opacity: 0.8;
-}

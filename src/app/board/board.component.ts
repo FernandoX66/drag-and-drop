@@ -4,6 +4,8 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateTaskDialogComponent } from './components/create-task-dialog/create-task-dialog.component';
 import { Task } from './models/task.interface';
 import { UserTasks } from './models/user-tasks.interface';
 import { LocalStorageService } from './services/local-storage.service';
@@ -14,35 +16,6 @@ import { LocalStorageService } from './services/local-storage.service';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
-  // tasks: Task[] = [
-  //   {
-  //     title: 'Create a new project',
-  //     description: 'Create a new project for the client.',
-  //     status: 'todo',
-  //   },
-  //   {
-  //     title: 'Build a new website',
-  //     description: 'Build a new website for the client.',
-  //     status: 'todo',
-  //   },
-  //   {
-  //     title: 'Do the homework',
-  //     description: 'The homework is not done, I have to do it.',
-  //     status: 'inProgress',
-  //   },
-  //   {
-  //     title: 'Do the shopping',
-  //     description: 'The shopping is not done, I have to do it.',
-  //     status: 'inProgress',
-  //   },
-
-  //   {
-  //     title: 'Do the dishes',
-  //     description: 'The dishes are not done, I have to do it.',
-  //     status: 'done',
-  //   },
-  // ];
-
   tasks: Array<Task> = [];
   userTasks: UserTasks = {
     todo: [],
@@ -50,7 +23,10 @@ export class BoardComponent implements OnInit {
     done: [],
   };
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(
+    private localStorageService: LocalStorageService,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.tasks = this.localStorageService.getTasks();
@@ -76,6 +52,27 @@ export class BoardComponent implements OnInit {
       );
       event.container.data[event.currentIndex].status = event.container.id;
     }
+    this.updateTasksInLocalStorage();
+  }
+
+  createTask(): void {
+    const dialogRef = this.matDialog.open(CreateTaskDialogComponent, {
+      width: '400px',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const task: Task = {
+          title: result.title,
+          description: result.description,
+          status: 'todo',
+        };
+        this.userTasks.todo.push(task);
+        this.updateTasksInLocalStorage();
+      }
+    });
+  }
+
+  updateTasksInLocalStorage(): void {
     this.localStorageService.setTasks([
       ...this.userTasks.todo,
       ...this.userTasks.inProgress,

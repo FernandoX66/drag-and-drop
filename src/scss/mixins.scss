@@ -1,0 +1,17 @@
+@mixin button($background, $hoverBackground, $color) {
+  font-family: inherit;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 5px;
+  background: $background;
+  color: $color;
+
+  &:hover {
+    cursor: pointer;
+    background: $hoverBackground;
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}

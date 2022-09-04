@@ -1,0 +1,63 @@
+@use "mixins" as *;
+
+form {
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+
+    label {
+      font-size: 15px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid rgb(219, 219, 219);
+      border-radius: 5px;
+      margin: 5px 0;
+      outline: none;
+      font-family: inherit;
+      color: rgb(108, 108, 108);
+
+      &::placeholder {
+        color: rgb(184, 184, 184);
+      }
+
+      &:hover {
+        border: 1px solid rgb(113, 113, 113);
+      }
+
+      &:focus {
+        border: 1px solid rgb(22, 78, 232);
+      }
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 10px;
+
+    button[type="submit"] {
+      @include button(rgb(22, 78, 232), rgb(69, 114, 237), #fff);
+      box-shadow: 0px 5px 17px -3px rgb(22 78 232 / 65%);
+
+      &:focus {
+        outline: 1px solid rgb(22, 78, 232);
+      }
+    }
+
+    button[type="button"] {
+      @include button(#fff, rgb(245, 245, 245), rgb(22, 78, 232));
+
+      &:focus {
+        outline: 1px solid rgb(22, 78, 232);
+      }
+    }
+  }
+}

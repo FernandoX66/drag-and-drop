@@ -5,10 +5,18 @@ import { BoardColumnComponent } from './components/board-column/board-column.com
 import { BoardCardComponent } from './components/board-card/board-card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LocalStorageService } from './services/local-storage.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateTaskDialogComponent } from './components/create-task-dialog/create-task-dialog.component';
 
 @NgModule({
-  declarations: [BoardComponent, BoardColumnComponent, BoardCardComponent],
-  imports: [CommonModule, DragDropModule],
+  declarations: [
+    BoardComponent,
+    BoardColumnComponent,
+    BoardCardComponent,
+    CreateTaskDialogComponent,
+  ],
+  imports: [CommonModule, DragDropModule, MatDialogModule, ReactiveFormsModule],
   exports: [BoardComponent],
   providers: [LocalStorageService],
 })

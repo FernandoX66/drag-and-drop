@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="createTak()">
+  <fieldset>
+    <label for="title">Title:</label>
+    <input
+      id="title"
+      autocomplete="off"
+      placeholder="Enter the title for your task"
+      type="text"
+      formControlName="title"
+    />
+  </fieldset>
+  <fieldset>
+    <label for="description">Description:</label>
+    <input
+      id="description"
+      autocomplete="off"
+      placeholder="Provide some description for your task"
+      type="text"
+      formControlName="description"
+    />
+  </fieldset>
+  <div class="action-buttons">
+    <button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button type="submit" [disabled]="form.invalid">Create Task</button>
+  </div>
+</form>
