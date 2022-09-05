@@ -20,6 +20,7 @@ export class BoardComponent implements OnInit {
   userTasks: UserTasks = {
     todo: [],
     inProgress: [],
+    blocked: [],
     done: [],
   };
 
@@ -57,7 +58,7 @@ export class BoardComponent implements OnInit {
 
   createTask(): void {
     const dialogRef = this.matDialog.open(CreateTaskDialogComponent, {
-      width: '400px',
+      width: '500px',
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -76,6 +77,7 @@ export class BoardComponent implements OnInit {
     this.localStorageService.setTasks([
       ...this.userTasks.todo,
       ...this.userTasks.inProgress,
+      ...this.userTasks.blocked,
       ...this.userTasks.done,
     ]);
   }

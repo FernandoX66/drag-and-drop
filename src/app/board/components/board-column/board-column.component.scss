@@ -1,3 +1,5 @@
+@use "colors" as *;
+
 .column {
   background: rgb(224, 230, 231);
   border-radius: 5px;
@@ -10,7 +12,9 @@
   .column__header {
     h3 {
       font-size: 16px;
-      color: rgb(100, 100, 100);
+      font-family: "Nexa", sans-serif;
+      font-weight: bold;
+      color: $headings;
       margin-left: 5px;
 
       span {

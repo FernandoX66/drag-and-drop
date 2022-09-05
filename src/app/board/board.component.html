@@ -9,7 +9,7 @@
     cdkDropList
     #toDoList="cdkDropList"
     [cdkDropListData]="userTasks.todo"
-    [cdkDropListConnectedTo]="[inProgressList, doneList]"
+    [cdkDropListConnectedTo]="[inProgressList, doneList, blockedList]"
     (cdkDropListDropped)="handleDrop($event)"
     id="todo"
   ></app-board-column>
@@ -21,7 +21,17 @@
     cdkDropList
     #inProgressList="cdkDropList"
     [cdkDropListData]="userTasks.inProgress"
-    [cdkDropListConnectedTo]="[toDoList, doneList]"
+    [cdkDropListConnectedTo]="[toDoList, doneList, blockedList]"
+    (cdkDropListDropped)="handleDrop($event)"
+  ></app-board-column>
+  <app-board-column
+    id="blocked"
+    columnTitle="BLOCKED"
+    [tasks]="userTasks.blocked"
+    cdkDropList
+    #blockedList="cdkDropList"
+    [cdkDropListData]="userTasks.blocked"
+    [cdkDropListConnectedTo]="[inProgressList, doneList, toDoList]"
     (cdkDropListDropped)="handleDrop($event)"
   ></app-board-column>
   <app-board-column
@@ -31,7 +41,7 @@
     cdkDropList
     #doneList="cdkDropList"
     [cdkDropListData]="userTasks.done"
-    [cdkDropListConnectedTo]="[inProgressList, toDoList]"
+    [cdkDropListConnectedTo]="[inProgressList, blockedList, toDoList]"
     (cdkDropListDropped)="handleDrop($event)"
   ></app-board-column>
 </div>

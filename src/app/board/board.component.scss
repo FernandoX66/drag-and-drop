@@ -8,6 +8,10 @@
   button {
     @include button(rgb(22, 78, 232), rgb(69, 114, 237), #fff);
     box-shadow: 0px 5px 17px -3px rgb(22 78 232 / 65%);
+
+    &:focus {
+      outline: 1px solid rgb(22, 78, 232);
+    }
   }
 }
 
