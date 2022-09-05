@@ -1,5 +1,10 @@
 @use "colors" as *;
 
+@mixin tagTheme($backgroundColor, $color) {
+  background-color: $backgroundColor;
+  color: $color;
+}
+
 @mixin card {
   background: #fff;
   padding: 10px;
@@ -17,6 +22,36 @@
   p {
     line-height: 19px;
     font-size: 15px;
+
+    &.tag {
+      padding: 2px 15px;
+      border-radius: 100px;
+      font-size: 13px;
+      margin-top: 8px;
+      display: inline-block;
+
+      &.orange {
+        @include tagTheme(rgb(186, 103, 0), rgb(255, 255, 255));
+      }
+      &.green {
+        @include tagTheme(rgb(0, 186, 103), rgb(255, 255, 255));
+      }
+      &.blue {
+        @include tagTheme(rgb(0, 103, 186), rgb(255, 255, 255));
+      }
+      &.red {
+        @include tagTheme(rgb(186, 0, 0), rgb(255, 255, 255));
+      }
+      &.gray {
+        @include tagTheme(rgb(186, 186, 186), rgb(0, 0, 0));
+      }
+      &.yellow {
+        @include tagTheme(rgb(186, 186, 0), rgb(255, 255, 255));
+      }
+      &.lightblue {
+        @include tagTheme(rgb(0, 186, 186), rgb(255, 255, 255));
+      }
+    }
   }
 }
 

@@ -1,6 +1,11 @@
 @use "mixins" as *;
 @use "colors" as *;
 
+@mixin tagTheme($backgroundColor, $color) {
+  background-color: $backgroundColor;
+  color: $color;
+}
+
 h2 {
   font-family: "Nexa", sans-serif;
   font-size: 26px;
@@ -20,6 +25,7 @@ form {
       margin-bottom: 5px;
     }
 
+    select,
     input {
       width: 100%;
       padding: 13px;
@@ -45,6 +51,45 @@ form {
 
       &.input-error {
         border: 1px solid $error;
+      }
+    }
+
+    .tag-selection {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      .tag-selection__color {
+        width: 41px;
+        height: 41px;
+        margin: 5px 0;
+        border-radius: 5px;
+
+        &.orange {
+          @include tagTheme(rgb(186, 103, 0), rgb(255, 255, 255));
+        }
+        &.green {
+          @include tagTheme(rgb(0, 186, 103), rgb(255, 255, 255));
+        }
+        &.blue {
+          @include tagTheme(rgb(0, 103, 186), rgb(255, 255, 255));
+        }
+        &.red {
+          @include tagTheme(rgb(186, 0, 0), rgb(255, 255, 255));
+        }
+        &.gray {
+          @include tagTheme(rgb(186, 186, 186), rgb(0, 0, 0));
+        }
+        &.yellow {
+          @include tagTheme(rgb(186, 186, 0), rgb(0, 0, 0));
+        }
+        &.lightblue {
+          @include tagTheme(rgb(0, 186, 186), rgb(0, 0, 0));
+        }
+      }
+
+      select {
+        padding: 9px;
       }
     }
 

@@ -1,4 +1,18 @@
 <div class="card">
   <h4>{{ task.title }}</h4>
   <p>{{ task.description }}</p>
+  <p
+    class="tag"
+    [ngClass]="{
+      orange: getTag().theme === 'orange',
+      blue: getTag().theme === 'blue',
+      green: getTag().theme === 'green',
+      red: getTag().theme === 'red',
+      yellow: getTag().theme === 'yellow',
+      lightblue: getTag().theme === 'lightblue',
+      gray: getTag().theme === 'gray'
+    }"
+  >
+    {{ getTag().label }}
+  </p>
 </div>

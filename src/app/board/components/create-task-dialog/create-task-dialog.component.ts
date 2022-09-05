@@ -14,6 +14,15 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateTaskDialogComponent {
   form: FormGroup;
+  tags: any[] = [
+    { label: 'Home', value: 'home', theme: 'orange' },
+    { label: 'Work', value: 'work', theme: 'blue' },
+    { label: 'University', value: 'university', theme: 'green' },
+    { label: 'Personal', value: 'personal', theme: 'red' },
+    { label: 'Shopping', value: 'shopping', theme: 'yellow' },
+    { label: 'Travel', value: 'travel', theme: 'lightblue' },
+    { label: 'Others', value: 'others', theme: 'gray' },
+  ];
 
   constructor(
     private matDialogRef: MatDialogRef<CreateTaskDialogComponent>,
@@ -26,6 +35,7 @@ export class CreateTaskDialogComponent {
     this.form = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
+      tag: ['home', Validators.required],
     });
   }
 
@@ -47,5 +57,10 @@ export class CreateTaskDialogComponent {
     } else {
       this.matDialogRef.close({ ...this.form.value });
     }
+  }
+
+  getSelectedTagTheme(): string {
+    const tag = this.getControl('tag').value;
+    return this.tags.find((t) => t.value === tag).theme;
   }
 }

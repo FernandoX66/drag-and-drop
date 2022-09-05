@@ -32,6 +32,28 @@
       You have to enter a description.
     </p>
   </fieldset>
+  <fieldset>
+    <label for="tag">Tag:</label>
+    <div class="tag-selection">
+      <div
+        class="tag-selection__color"
+        [ngClass]="{
+          orange: getSelectedTagTheme() === 'orange',
+          blue: getSelectedTagTheme() === 'blue',
+          green: getSelectedTagTheme() === 'green',
+          red: getSelectedTagTheme() === 'red',
+          yellow: getSelectedTagTheme() === 'yellow',
+          lightblue: getSelectedTagTheme() === 'lightblue',
+          gray: getSelectedTagTheme() === 'gray'
+        }"
+      ></div>
+      <select id="tag" formControlName="tag">
+        <option *ngFor="let tag of tags" [value]="tag.value">
+          {{ tag.label }}
+        </option>
+      </select>
+    </div>
+  </fieldset>
   <div class="action-buttons">
     <button type="button" [mat-dialog-close]="false">Cancel</button>
     <button type="submit">Create Task</button>

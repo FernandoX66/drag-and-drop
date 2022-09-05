@@ -66,6 +66,7 @@ export class BoardComponent implements OnInit {
           title: result.title,
           description: result.description,
           status: 'todo',
+          tag: result.tag,
         };
         this.userTasks.todo.push(task);
         this.updateTasksInLocalStorage();
