@@ -42,6 +42,16 @@ form {
       &:focus {
         border: 1px solid rgb(22, 78, 232);
       }
+
+      &.input-error {
+        border: 1px solid $error;
+      }
+    }
+
+    .error {
+      font-size: 13px;
+      color: $error;
+      margin: 1px 0 0 10px;
     }
   }
 
