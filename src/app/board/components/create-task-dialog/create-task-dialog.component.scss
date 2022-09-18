@@ -1,5 +1,6 @@
 @use "mixins" as *;
 @use "colors" as *;
+@use "responsive" as *;
 
 @mixin tagTheme($backgroundColor, $color) {
   background-color: $backgroundColor;
@@ -106,6 +107,11 @@ form {
     margin-top: 20px;
     gap: 10px;
 
+    @include s-small {
+      flex-direction: column-reverse;
+      gap: 15px;
+    }
+
     button[type="button"] {
       @include button(rgb(230, 236, 255), rgb(239, 242, 251), rgb(22, 78, 232));
 
@@ -117,6 +123,11 @@ form {
     .action-buttons__primary {
       display: flex;
       gap: 10px;
+
+      @include s-small {
+        flex-direction: column-reverse;
+        gap: 15px;
+      }
 
       button[type="submit"] {
         @include button(rgb(22, 78, 232), rgb(69, 114, 237), #fff);

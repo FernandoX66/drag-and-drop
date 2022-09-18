@@ -1,3 +1,5 @@
+@use "responsive" as *;
+
 @mixin button($background, $hoverBackground, $color) {
   font-family: inherit;
   font-size: 15px;
@@ -6,6 +8,10 @@
   border-radius: 5px;
   background: $background;
   color: $color;
+
+  @include s-small {
+    width: 100%;
+  }
 
   &:hover {
     cursor: pointer;

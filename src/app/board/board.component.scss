@@ -1,4 +1,5 @@
 @use "mixins" as *;
+@use "responsive" as *;
 
 .header {
   display: flex;
@@ -19,8 +20,11 @@
   display: flex;
   gap: 10px;
   align-items: flex-start;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
 
   app-board-column {
     flex: 1;
+    min-width: 200px;
   }
 }
