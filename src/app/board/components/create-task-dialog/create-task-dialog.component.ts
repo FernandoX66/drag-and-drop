@@ -5,7 +5,12 @@ import {
   UntypedFormBuilder,
   Validators,
 } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
 import { Tag } from '../../models/tag.interface';
 import { TagsService } from '../../services/tags.service';
 
@@ -22,6 +27,7 @@ export class CreateTaskDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: { title: string; description: string; tag: string },
+    private dialog: MatDialog,
     private matDialogRef: MatDialogRef<CreateTaskDialogComponent>,
     private fb: UntypedFormBuilder,
     private tagsService: TagsService
@@ -69,6 +75,20 @@ export class CreateTaskDialogComponent implements OnInit {
     } else {
       this.matDialogRef.close({ ...this.form.value });
     }
+  }
+
+  deleteTask(): void {
+    const matDialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '480px',
+      data: {
+        title: 'Delete task',
+        message: `Are you sure you want to delete the task ${this.data.title}?`,
+        confirmButtonText: 'Delete',
+      },
+    });
+    matDialogRef.afterClosed().subscribe((result) => {
+      if (result) this.matDialogRef.close({ ...this.form.value, delete: true });
+    });
   }
 
   getSelectedTagTheme(): string | undefined {

@@ -14,6 +14,7 @@ import { CreateTaskDialogComponent } from '../create-task-dialog/create-task-dia
 export class BoardCardComponent implements OnInit {
   @Input() task: Task;
   @Output() onTaskEdit: EventEmitter<null> = new EventEmitter<null>();
+  @Output() onTaskDelete: EventEmitter<number> = new EventEmitter<number>();
   tags: Tag[] = [];
 
   constructor(private dialog: MatDialog, private tagsService: TagsService) {}
@@ -38,10 +39,14 @@ export class BoardCardComponent implements OnInit {
 
     matDialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.task.title = result.title;
-        this.task.description = result.description;
-        this.task.tag = result.tag;
-        this.onTaskEdit.emit(null);
+        if (!result.delete) {
+          this.task.title = result.title;
+          this.task.description = result.description;
+          this.task.tag = result.tag;
+          this.onTaskEdit.emit(null);
+        } else {
+          this.onTaskDelete.emit(this.task.id);
+        }
       }
     });
   }

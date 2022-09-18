@@ -17,4 +17,10 @@ export class BoardColumnComponent {
   onTaskEdit(): void {
     this.onTasksChange.emit(null);
   }
+
+  onTaskDelete(id: number): void {
+    const index = this.tasks.findIndex((task) => task.id === id);
+    this.tasks.splice(index, 1);
+    this.onTasksChange.emit(null);
+  }
 }

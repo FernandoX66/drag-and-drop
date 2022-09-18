@@ -1,0 +1,10 @@
+<h2>{{ data.title }}</h2>
+<p>{{ data.message }}</p>
+<div class="action-buttons">
+  <button [mat-dialog-close]="false">
+    {{ data.cancelButtonText ? data.cancelButtonText : "Cancel" }}
+  </button>
+  <button [mat-dialog-close]="true">
+    {{ data.confirmButtonText ? data.confirmButtonText : "Confirm" }}
+  </button>
+</div>

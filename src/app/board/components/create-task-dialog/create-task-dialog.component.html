@@ -56,6 +56,14 @@
   </fieldset>
   <div class="action-buttons">
     <button type="button" [mat-dialog-close]="false">Cancel</button>
-    <button type="submit">{{ isEditing ? "Edit Task" : "Create Task" }}</button>
+
+    <div class="action-buttons__primary">
+      <button type="button" *ngIf="isEditing" (click)="deleteTask()">
+        Delete
+      </button>
+      <button type="submit">
+        {{ isEditing ? "Edit Task" : "Create Task" }}
+      </button>
+    </div>
   </div>
 </form>

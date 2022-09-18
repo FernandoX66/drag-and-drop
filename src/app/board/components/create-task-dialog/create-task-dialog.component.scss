@@ -102,24 +102,37 @@ form {
 
   .action-buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 20px;
     gap: 10px;
 
-    button[type="submit"] {
-      @include button(rgb(22, 78, 232), rgb(69, 114, 237), #fff);
-      box-shadow: 0px 5px 17px -3px rgb(22 78 232 / 65%);
+    button[type="button"] {
+      @include button(rgb(230, 236, 255), rgb(239, 242, 251), rgb(22, 78, 232));
 
       &:focus {
         outline: 1px solid rgb(22, 78, 232);
       }
     }
 
-    button[type="button"] {
-      @include button(#fff, rgb(245, 245, 245), rgb(22, 78, 232));
+    .action-buttons__primary {
+      display: flex;
+      gap: 10px;
 
-      &:focus {
-        outline: 1px solid rgb(22, 78, 232);
+      button[type="submit"] {
+        @include button(rgb(22, 78, 232), rgb(69, 114, 237), #fff);
+        box-shadow: 0px 5px 17px -3px rgb(22 78 232 / 65%);
+
+        &:focus {
+          outline: 1px solid rgb(22, 78, 232);
+        }
+      }
+
+      button[type="button"] {
+        @include button(#fff, rgb(240, 240, 240), rgb(22, 78, 232));
+
+        &:focus {
+          outline: 1px solid rgb(22, 78, 232);
+        }
       }
     }
   }
