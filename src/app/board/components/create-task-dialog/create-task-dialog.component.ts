@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormGroup,
@@ -6,29 +6,28 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Tag } from '../../models/tag.interface';
+import { TagsService } from '../../services/tags.service';
 
 @Component({
   selector: 'app-create-task-dialog',
   templateUrl: './create-task-dialog.component.html',
   styleUrls: ['./create-task-dialog.component.scss'],
 })
-export class CreateTaskDialogComponent {
+export class CreateTaskDialogComponent implements OnInit {
   form: FormGroup;
-  tags: any[] = [
-    { label: 'Home', value: 'home', theme: 'orange' },
-    { label: 'Work', value: 'work', theme: 'blue' },
-    { label: 'University', value: 'university', theme: 'green' },
-    { label: 'Personal', value: 'personal', theme: 'red' },
-    { label: 'Shopping', value: 'shopping', theme: 'yellow' },
-    { label: 'Travel', value: 'travel', theme: 'lightblue' },
-    { label: 'Others', value: 'others', theme: 'gray' },
-  ];
+  tags: Tag[] = [];
 
   constructor(
     private matDialogRef: MatDialogRef<CreateTaskDialogComponent>,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private tagsService: TagsService
   ) {
     this.buildForm();
+  }
+
+  ngOnInit(): void {
+    this.tags = this.tagsService.tags;
   }
 
   buildForm(): void {
@@ -59,8 +58,8 @@ export class CreateTaskDialogComponent {
     }
   }
 
-  getSelectedTagTheme(): string {
+  getSelectedTagTheme(): string | undefined {
     const tag = this.getControl('tag').value;
-    return this.tags.find((t) => t.value === tag).theme;
+    return this.tags.find((t) => t.value === tag)?.theme;
   }
 }

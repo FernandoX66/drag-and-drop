@@ -8,6 +8,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateTaskDialogComponent } from './components/create-task-dialog/create-task-dialog.component';
+import { TagsService } from './services/tags.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { CreateTaskDialogComponent } from './components/create-task-dialog/creat
   ],
   imports: [CommonModule, DragDropModule, MatDialogModule, ReactiveFormsModule],
   exports: [BoardComponent],
-  providers: [LocalStorageService],
+  providers: [LocalStorageService, TagsService],
 })
 export class BoardModule {}

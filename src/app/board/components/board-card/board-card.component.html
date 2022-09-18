@@ -4,15 +4,15 @@
   <p
     class="tag"
     [ngClass]="{
-      orange: getTag().theme === 'orange',
-      blue: getTag().theme === 'blue',
-      green: getTag().theme === 'green',
-      red: getTag().theme === 'red',
-      yellow: getTag().theme === 'yellow',
-      lightblue: getTag().theme === 'lightblue',
-      gray: getTag().theme === 'gray'
+      orange: getTag()?.theme === 'orange',
+      blue: getTag()?.theme === 'blue',
+      green: getTag()?.theme === 'green',
+      red: getTag()?.theme === 'red',
+      yellow: getTag()?.theme === 'yellow',
+      lightblue: getTag()?.theme === 'lightblue',
+      gray: getTag()?.theme === 'gray'
     }"
   >
-    {{ getTag().label }}
+    {{ getTag()?.label }}
   </p>
 </div>

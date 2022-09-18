@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { Task } from '../../models/task.interface';
+
 @Component({
   selector: 'app-board-column',
   templateUrl: './board-column.component.html',
@@ -7,7 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class BoardColumnComponent {
   @Input() columnTitle: string;
-  @Input() tasks: Array<any> = [];
+  @Input() tasks: Array<Task> = [];
 
   constructor() {}
 }
