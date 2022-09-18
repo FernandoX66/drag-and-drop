@@ -44,7 +44,6 @@ export class BoardComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      console.log(event);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -63,6 +62,7 @@ export class BoardComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const task: Task = {
+          id: Date.now(),
           title: result.title,
           description: result.description,
           status: 'todo',

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Task } from '../../models/task.interface';
 
@@ -10,6 +10,11 @@ import { Task } from '../../models/task.interface';
 export class BoardColumnComponent {
   @Input() columnTitle: string;
   @Input() tasks: Array<Task> = [];
+  @Output() onTasksChange: EventEmitter<null> = new EventEmitter<null>();
 
   constructor() {}
+
+  onTaskEdit(): void {
+    this.onTasksChange.emit(null);
+  }
 }

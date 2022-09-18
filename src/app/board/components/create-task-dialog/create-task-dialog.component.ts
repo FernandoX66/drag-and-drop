@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormGroup,
   UntypedFormBuilder,
   Validators,
 } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Tag } from '../../models/tag.interface';
 import { TagsService } from '../../services/tags.service';
 
@@ -17,8 +17,11 @@ import { TagsService } from '../../services/tags.service';
 export class CreateTaskDialogComponent implements OnInit {
   form: FormGroup;
   tags: Tag[] = [];
+  isEditing = false;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: { title: string; description: string; tag: string },
     private matDialogRef: MatDialogRef<CreateTaskDialogComponent>,
     private fb: UntypedFormBuilder,
     private tagsService: TagsService
@@ -28,13 +31,23 @@ export class CreateTaskDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.tags = this.tagsService.tags;
+    if (this.data) this.isEditing = true;
   }
 
   buildForm(): void {
     this.form = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      tag: ['home', Validators.required],
+      title: [
+        this.data && this.data.title ? this.data.title : '',
+        Validators.required,
+      ],
+      description: [
+        this.data && this.data.description ? this.data.description : '',
+        Validators.required,
+      ],
+      tag: [
+        this.data && this.data.tag ? this.data.tag : 'home',
+        Validators.required,
+      ],
     });
   }
 

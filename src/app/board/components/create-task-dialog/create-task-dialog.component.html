@@ -1,4 +1,4 @@
-<h2>Create new task</h2>
+<h2>{{ isEditing ? "Edit task" : "Create new task" }}</h2>
 <form [formGroup]="form" #ngForm="ngForm" (ngSubmit)="createTak()">
   <fieldset>
     <label for="title">Title:</label>
@@ -56,6 +56,6 @@
   </fieldset>
   <div class="action-buttons">
     <button type="button" [mat-dialog-close]="false">Cancel</button>
-    <button type="submit">Create Task</button>
+    <button type="submit">{{ isEditing ? "Edit Task" : "Create Task" }}</button>
   </div>
 </form>

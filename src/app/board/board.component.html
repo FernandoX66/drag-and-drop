@@ -11,7 +11,7 @@
     [cdkDropListData]="userTasks.todo"
     [cdkDropListConnectedTo]="[inProgressList, doneList, blockedList]"
     (cdkDropListDropped)="handleDrop($event)"
-    id="todo"
+    (onTasksChange)="updateTasksInLocalStorage()"
   ></app-board-column>
 
   <app-board-column
@@ -23,6 +23,7 @@
     [cdkDropListData]="userTasks.inProgress"
     [cdkDropListConnectedTo]="[toDoList, doneList, blockedList]"
     (cdkDropListDropped)="handleDrop($event)"
+    (onTasksChange)="updateTasksInLocalStorage()"
   ></app-board-column>
   <app-board-column
     id="blocked"
@@ -33,6 +34,7 @@
     [cdkDropListData]="userTasks.blocked"
     [cdkDropListConnectedTo]="[inProgressList, doneList, toDoList]"
     (cdkDropListDropped)="handleDrop($event)"
+    (onTasksChange)="updateTasksInLocalStorage()"
   ></app-board-column>
   <app-board-column
     id="done"
@@ -43,5 +45,6 @@
     [cdkDropListData]="userTasks.done"
     [cdkDropListConnectedTo]="[inProgressList, blockedList, toDoList]"
     (cdkDropListDropped)="handleDrop($event)"
+    (onTasksChange)="updateTasksInLocalStorage()"
   ></app-board-column>
 </div>

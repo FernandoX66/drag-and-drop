@@ -5,7 +5,12 @@
     </h3>
   </div>
   <div class="column__content">
-    <app-board-card *ngFor="let task of tasks" [task]="task" cdkDrag>
+    <app-board-card
+      *ngFor="let task of tasks"
+      [task]="task"
+      cdkDrag
+      (onTaskEdit)="onTaskEdit()"
+    >
     </app-board-card>
   </div>
 </div>
